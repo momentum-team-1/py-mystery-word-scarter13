@@ -53,9 +53,12 @@ numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0',]
 word = "magnitude"
 current_guesses = ['a']
 guesses_remaining = 8
+correct_guesses = 0
 
-def get_input():
+
+def get_input(guesses_remaining, correct_guesses, word_length):
     valid = "false"
+    print (guesses_remaining, correct_guesses, word_length)
     while valid == "false":
         new_guess = input ("Which letter do you guess? ")
         new_guess = (new_guess.lower())
@@ -70,15 +73,24 @@ def get_input():
             current_guesses.append(new_guess)
             print (current_guesses)
             valid = "true"
+            if new_guess in word:
+                print ("Correct!")
+                correct_guesses += 1
+            else:
+                print ("Sorry!")
+                guesses_remaining = guesses_remaining - 1
+                print (guesses_remaining)
 
 
 def add_letter (letter, guesses):
+#Determines if a letter or a blank will be shown
     if letter in guesses:
         return letter
     else:
         return "_"
 
 def display_word (word, guesses):
+#Make a display of current letters and blanks on the cpommand line 
     output_letters = [add_letter(letter, guesses)
                       for letter in word]
     print(" ".join(output_letters))
@@ -102,13 +114,21 @@ def play_game():
     print ("")
     word_length = len(word)
     print ("Your word is", word_length, "letters long.")
-    print ("")
-    composition =[]
-    for letter in word:
-        composition.append(add_letter(letter, current_guesses))
-    display_word(word, current_guesses)
-    print("")
-    get_input()
+    while word_length != correct_guesses:
+        if guesses_remaining == 0:
+            print ("I'm sorry.  You are out of guesses.  The word was ", word)
+            #run a new game question function here
+        else:
+            print ("Guesses remaining: ", guesses_remaining)
+            print ("")
+            composition =[]
+            for letter in word:
+                composition.append(add_letter(letter, current_guesses))
+            display_word(word, current_guesses)
+            print("")
+            get_input(guesses_remaining, correct_guesses, word_length)
+        #print ("Congratulations!  You win!")
+    #run the new game question function here
 
 
 
