@@ -1,4 +1,4 @@
-## Normal Mode
+
 
 
 """
@@ -36,20 +36,80 @@ B _ _ B A _ D
 # ask if they would like to play again.
 """Code structure as follows"""
 
+
+
 # function to open file, read text, close file
 # function to identify the game and explain the rules
+
+
+
+""" 
+
+"""
 # function to allow user to choose difficulty level
+
 # create variables for the word, the letters guessed, and the guesses remaining.
+
+word = "magnitude"
+current_guesses = []
+guesses_remaining = 8
+
+def get_input():
+    #valid_entry = False
+    #while valid_entry = False
+    new_guess = input ("Which letter do you guess? ")
+    if new_guess not in current_guesses:
+        current_guesses.append(new_guess)
+        #valid_entry = True
+    else:
+        print ("You have guessed that letter already.  Try again!")
+    
+
+
+def add_letter (letter, guesses):
+    if letter in guesses:
+        return letter
+    else:
+        return "_"
+
+def display_word (word, guesses):
+    output_letters = [add_letter(letter, guesses)
+                      for letter in word]
+    print(" ".join(output_letters))
+
+
 # function to randomly select a word of the proper difficulty
 # function to run the game
     # function to display remaining chances
     # function to print letters guessed
     # function to display word
     # function to get the player's guess
+    # functioun to validate player's guess
+        #is it a letter
+        #is it a letter that they already guessed
     # function to evaluate game state: win, lose, or continue
+
     # function to update chances, letters guessed, and word
+def play_game():
+    print ("")
+    print ("Mystery Word Guessing Game")
+    print ("")
+    word_length = len(word)
+    print ("Your word is", word_length, "letters long.")
+    print ("")
+    composition =[]
+    for letter in word:
+        composition.append(add_letter(letter, current_guesses))
+    display_word(word, current_guesses)
+    print("")
+    get_input()
+
+
+
 # function to end game
 # function to start new game
 
+play_game ()
 
-
+#if __name__=="__main__":
+#    play_game
