@@ -49,21 +49,27 @@ B _ _ B A _ D
 # function to allow user to choose difficulty level
 
 # create variables for the word, the letters guessed, and the guesses remaining.
-
+numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0',]
 word = "magnitude"
-current_guesses = []
+current_guesses = ['a']
 guesses_remaining = 8
 
 def get_input():
-    #valid_entry = False
-    #while valid_entry = False
-    new_guess = input ("Which letter do you guess? ")
-    if new_guess not in current_guesses:
-        current_guesses.append(new_guess)
-        #valid_entry = True
-    else:
-        print ("You have guessed that letter already.  Try again!")
-    
+    valid = "false"
+    while valid == "false":
+        new_guess = input ("Which letter do you guess? ")
+        new_guess = (new_guess.lower())
+        print (new_guess)
+        if new_guess in current_guesses:
+            print ("You have guessed that letter already.  Try again!")
+        elif len(new_guess) > 1:
+            print ("One guess at a time, please!")
+        elif (new_guess) in numbers:
+            print ("Numbers are not a valid input")
+        else:
+            current_guesses.append(new_guess)
+            print (current_guesses)
+            valid = "true"
 
 
 def add_letter (letter, guesses):
