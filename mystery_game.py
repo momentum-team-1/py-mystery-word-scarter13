@@ -27,6 +27,7 @@ import string
 file = open("words.txt")
 text = file.read()
 file.close()
+print (text)
 
 
 numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0',]
@@ -49,9 +50,6 @@ def display_word (word, guesses):
 def new_game():
     x = input ("Would you like to play again? y or n? ")
     if x == "y":
-        #current_guesses = []
-        #composition = []
-        #output_letters = []
         play_game()
     elif x == "n":
         exit()
