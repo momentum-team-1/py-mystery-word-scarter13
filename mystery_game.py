@@ -51,35 +51,6 @@ B _ _ B A _ D
 # create variables for the word, the letters guessed, and the guesses remaining.
 numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0',]
 word = "magnitude"
-current_guesses = ['a']
-guesses_remaining = 8
-correct_guesses = 0
-
-
-def get_input(guesses_remaining, correct_guesses, word_length):
-    valid = "false"
-    print (guesses_remaining, correct_guesses, word_length)
-    while valid == "false":
-        new_guess = input ("Which letter do you guess? ")
-        new_guess = (new_guess.lower())
-        print (new_guess)
-        if new_guess in current_guesses:
-            print ("You have guessed that letter already.  Try again!")
-        elif len(new_guess) > 1:
-            print ("One guess at a time, please!")
-        elif (new_guess) in numbers:
-            print ("Numbers are not a valid input")
-        else:
-            current_guesses.append(new_guess)
-            print (current_guesses)
-            valid = "true"
-            if new_guess in word:
-                print ("Correct!")
-                correct_guesses += 1
-            else:
-                print ("Sorry!")
-                guesses_remaining = guesses_remaining - 1
-                print (guesses_remaining)
 
 
 def add_letter (letter, guesses):
@@ -95,29 +66,36 @@ def display_word (word, guesses):
                       for letter in word]
     print(" ".join(output_letters))
 
-
+def new_game():
+    x = input ("Would you like to play again? y or n? ")
+    if x == "y":
+        current_guesses = []
+        composition = []
+        output_letters = []
+        print (current_guesses)
+        print (composition)
+        print (output_letters)
+        play_game()
+    elif x == "n":
+        return
 # function to randomly select a word of the proper difficulty
-# function to run the game
-    # function to display remaining chances
-    # function to print letters guessed
-    # function to display word
-    # function to get the player's guess
-    # functioun to validate player's guess
-        #is it a letter
-        #is it a letter that they already guessed
-    # function to evaluate game state: win, lose, or continue
 
-    # function to update chances, letters guessed, and word
+
+
+
+
 def play_game():
+    guesses_remaining = 8
+    correct_guesses = 0
+    current_guesses =[]
     print ("")
     print ("Mystery Word Guessing Game")
     print ("")
-    word_length = len(word)
     print ("Your word is", word_length, "letters long.")
     while word_length != correct_guesses:
         if guesses_remaining == 0:
-            print ("I'm sorry.  You are out of guesses.  The word was ", word)
-            #run a new game question function here
+            print ("I'm sorry.  You are out of guesses.  The word was: ", word)
+            new_game()
         else:
             print ("Guesses remaining: ", guesses_remaining)
             print ("")
@@ -126,8 +104,26 @@ def play_game():
                 composition.append(add_letter(letter, current_guesses))
             display_word(word, current_guesses)
             print("")
-            get_input(guesses_remaining, correct_guesses, word_length)
-        #print ("Congratulations!  You win!")
+            valid = "false"
+            while valid == "false":
+                new_guess = input ("Which letter do you guess? ")
+                new_guess = (new_guess.lower())
+                if new_guess in current_guesses:
+                    print ("You have guessed that letter already.  Try again!")
+                elif len(new_guess) > 1:
+                    print ("One guess at a time, please!")
+                elif (new_guess) in numbers:
+                    print ("Numbers are not a valid input")
+                else:
+                    current_guesses.append(new_guess)
+                    valid = "true"
+                    if new_guess in word:
+                        print ("Correct!")
+                        correct_guesses += 1
+                    else:
+                        print ("Sorry!")
+                        guesses_remaining = guesses_remaining - 1
+    print ("Congratulations!  You win!")
     #run the new game question function here
 
 
@@ -138,4 +134,3 @@ def play_game():
 play_game ()
 
 #if __name__=="__main__":
-#    play_game
