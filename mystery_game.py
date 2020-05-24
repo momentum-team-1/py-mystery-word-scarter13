@@ -1,9 +1,7 @@
-
-
-
 """
 The computer must select a word at random from the list of words in the file `words.txt` from this repository.
 """
+
 
 # read the file words.txt.  refer to the open, read, and close commands in the word frequency program.  Refer to the random import for deets on selecting a word at random.  
 
@@ -12,43 +10,25 @@ The computer must select a word at random from the list of words in the file `wo
 """
 # refer to the input section of the house-hunting exercise to get input for difficulty and for guesses.  You will need a function to sort out all words with fewer than 4 characters, and then to select from words with 4-6 characters for easy, 6-8 for normal, and 8 or more for hard.
 
-"""
-2. At the start of the game, let the user know how many letters the computer's word contains.
-"""
-# build a string that has enough _ to represent each letter in the word.  Notes on this are in one of the python notebooks.
-"""
-3. Ask the user to supply one guess (i.e. letter) per round. This letter can be upper or lower case and it should not matter. If a user enters more than one letter, tell them the input is invalid and let them try again.
-"""
-# explain the rules: one guess per round.  case should not matter.  more than one letter should trigger an "invalid entry" notice.
-"""
-4. Let the user know if their guess appears in the computer's word.
-5. Display the partially guessed word, as well as letters that have not been guessed. For example, if the word is BOMBARD and the letters guessed are a, b, and d, the screen should display:
-```
-B _ _ B A _ D
-```
-"""
-# let the user know if their guess was correct by making that letter appear in the string of blanks.
 
-# the player is allowed 8 incorrect guesses.  display the number of remaining guesses.  If the user guesses the same letter twice, do not take away one of those guesses.  instead, message that they have already guessed that letter
 
-# end game when one of two conditions are met: all letters are revealed or all guesses are exhausted.  If a win, grats.  If a loss, reveal the word.
-
-# ask if they would like to play again.
 """Code structure as follows"""
 
 
 
 # function to open file, read text, close file
 # function to identify the game and explain the rules
-
-
-
-""" 
-
-"""
 # function to allow user to choose difficulty level
+# build a list of words already guessed to prevent duplication?
 
-# create variables for the word, the letters guessed, and the guesses remaining.
+
+import random
+import string
+file = open("words.txt")
+text = file.read()
+file.close()
+
+
 numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0',]
 word = "magnitude"
 
@@ -69,25 +49,20 @@ def display_word (word, guesses):
 def new_game():
     x = input ("Would you like to play again? y or n? ")
     if x == "y":
-        current_guesses = []
-        composition = []
-        output_letters = []
-        print (current_guesses)
-        print (composition)
-        print (output_letters)
+        #current_guesses = []
+        #composition = []
+        #output_letters = []
         play_game()
     elif x == "n":
-        return
+        exit()
 # function to randomly select a word of the proper difficulty
 
-
-
-
-
 def play_game():
+    print ("file loaded")
     guesses_remaining = 8
     correct_guesses = 0
     current_guesses =[]
+    word_length = len(word)
     print ("")
     print ("Mystery Word Guessing Game")
     print ("")
@@ -124,6 +99,7 @@ def play_game():
                         print ("Sorry!")
                         guesses_remaining = guesses_remaining - 1
     print ("Congratulations!  You win!")
+    new_game()
     #run the new game question function here
 
 
